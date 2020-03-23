@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./logo.svg";
+import board from "./components/board-box";
 import "./App.css";
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>X's & O's</h1>
+        <board />
       </header>
     </div>
   );
