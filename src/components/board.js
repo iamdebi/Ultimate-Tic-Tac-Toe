@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Storage } from "./../storage/storage";
-import { Box } from "./board-box";
+import Box from "./board-box";
 import * as utils from "../utils/functions";
 
 class Board extends Component {
@@ -32,7 +32,7 @@ class Board extends Component {
 
     history.push(this.state.xIsNext ? "x" : "o");
 
-    this.state({
+    this.setState({
       boxes: boxes,
       history: history,
       xIsNext: !this.state.xIsNext
@@ -48,7 +48,7 @@ class Board extends Component {
   };
   render() {
     const winner = utils.findWinner(this.state.boxes);
-    const isFille = utils.areAllBoxesClicked(this.state.boxes);
+    const isFilled = utils.areAllBoxesClicked(this.state.boxes);
     let status;
     if (winner) {
       status = `The winner is: ${winner}!`;
