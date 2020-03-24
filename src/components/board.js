@@ -1,39 +1,35 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Storage } from "./../storage/storage";
-import Box from "./board-box";
-import * as utils from "../utils/functions";
+import SmallBoard from "./smaller-board";
+import * as utils from "../functions/functions";
 
 class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      boxes: Array(9).fill(null),
+      boards: Array(9).fill(null),
+      boxesOne: Array(9).fill(null),
+      boxesTwo: Array(9).fill(null),
+      boxesThree: Array(9).fill(null),
+      boxesFour: Array(9).fill(null),
+      boxesFive: Array(9).fill(null),
+      boxesSix: Array(9).fill(null),
+      boxesSeven: Array(9).fill(null),
+      boxesEight: Array(9).fill(null),
+      boxesNine: Array(9).fill(null),
       history: [],
       xIsNext: true
     };
+
+    this.updateSate = this.updateSate.bind(this);
   }
 
   storage = new Storage();
 
-  handleBoxClick(index) {
-    const boxes = this.state.boxes.slice();
-    let history = this.state.history;
-
-    if (utils.findWinner(boxes) || boxes[index]) {
-      return;
-    }
-
-    if (utils.areAllBoxesClicked(boxes) === true) {
-      return;
-    }
-
-    boxes[index] = this.state.xIsNext ? "x" : "o";
-
-    history.push(this.state.xIsNext ? "x" : "o");
-
+  updateSate(currentBoard, boxes, history) {
     this.setState({
-      boxes: boxes,
+      [currentBoard]: boxes,
       history: history,
       xIsNext: !this.state.xIsNext
     });
@@ -46,74 +42,111 @@ class Board extends Component {
       xIsNext: true
     });
   };
+
   render() {
-    const winner = utils.findWinner(this.state.boxes);
-    const isFilled = utils.areAllBoxesClicked(this.state.boxes);
-    let status;
-    if (winner) {
-      status = `The winner is: ${winner}!`;
-      this.storage.update([`${winner} won`]);
-    } else if (!winner && isFilled) {
-      status = "Game drawn!";
-      this.storage.update(["Game drawn"]);
-    } else {
-      status = `It is ${this.state.xIsNext ? "x" : "o"}'s turn.`;
-    }
+    let boxesOne = "boxesOne";
+    let boxesTwo = "boxesTwo";
+    let boxesThree = "boxesThree";
+    let boxesFour = "boxesFour";
+    let boxesFive = "boxesFive";
+    let boxesSix = "boxesSix";
+    let boxesSeven = "boxesSeven";
+    let boxesEight = "boxesEight";
+    let boxesNine = "boxesNine";
 
     return (
       <div>
         <Link to="/" className="board-link">
           Go back to scoreboard
         </Link>
+        <Link to="/rules" className="board-link">
+          View the rules
+        </Link>
         <div className="board-wrapper">
           <div className="board">
-            <h2 className="board-heading">{status}</h2>
+            <h2 className="board-heading">Status Should be here</h2>
             <div className="board-row">
-              <Box
-                value={this.state.boxes[0]}
-                onClick={() => this.handleBoxClick(0)}
+              <SmallBoard
+                board={boxesOne}
+                xIsNext={this.state.xIsNext}
+                history={this.state.history}
+                boxes={this.state.boxesOne}
+                value={this.state.boards[0]}
+                updateSate={this.updateSate}
               />
-              <Box
-                value={this.state.boxes[1]}
-                onClick={() => this.handleBoxClick(1)}
+              <SmallBoard
+                board={boxesTwo}
+                xIsNext={this.state.xIsNext}
+                history={this.state.history}
+                boxes={this.state.boxesTwo}
+                value={this.state.boards[1]}
+                updateSate={this.updateSate}
               />
-              <Box
-                value={this.state.boxes[2]}
-                onClick={() => this.handleBoxClick(2)}
+              <SmallBoard
+                board={boxesThree}
+                xIsNext={this.state.xIsNext}
+                history={this.state.history}
+                boxes={this.state.boxesThree}
+                value={this.state.boards[2]}
+                updateSate={this.updateSate}
               />
             </div>
 
             <div className="board-row">
-              <Box
-                value={this.state.boxes[3]}
-                onClick={() => this.handleBoxClick(3)}
+              <SmallBoard
+                board={boxesFour}
+                xIsNext={this.state.xIsNext}
+                history={this.state.history}
+                boxes={this.state.boxesFour}
+                value={this.state.boards[3]}
+                updateSate={this.updateSate}
               />
 
-              <Box
-                value={this.state.boxes[4]}
-                onClick={() => this.handleBoxClick(4)}
+              <SmallBoard
+                board={boxesFive}
+                xIsNext={this.state.xIsNext}
+                history={this.state.history}
+                boxes={this.state.boxesFive}
+                value={this.state.boards[4]}
+                updateSate={this.updateSate}
               />
 
-              <Box
-                value={this.state.boxes[5]}
-                onClick={() => this.handleBoxClick(5)}
+              <SmallBoard
+                board={boxesSix}
+                xIsNext={this.state.xIsNext}
+                history={this.state.history}
+                boxes={this.state.boxesSix}
+                value={this.state.boards[5]}
+                updateSate={this.updateSate}
               />
             </div>
 
             <div className="board-row">
-              <Box
-                value={this.state.boxes[6]}
-                onClick={() => this.handleBoxClick(6)}
+              <SmallBoard
+                board={boxesSeven}
+                xIsNext={this.state.xIsNext}
+                history={this.state.history}
+                boxes={this.state.boxesSeven}
+                value={this.state.boards[6]}
+                updateSate={this.updateSate}
               />
 
-              <Box
-                value={this.state.boxes[7]}
-                onClick={() => this.handleBoxClick(7)}
+              <SmallBoard
+                board={boxesEight}
+                xIsNext={this.state.xIsNext}
+                history={this.state.history}
+                boxes={this.state.boxesEight}
+                value={this.state.boards[7]}
+                updateSate={this.updateSate}
               />
 
-              <Box
-                value={this.state.boxes[8]}
-                onClick={() => this.handleBoxClick(8)}
+              <SmallBoard
+                board={boxesNine}
+                xIsNext={this.state.xIsNext}
+                history={this.state.history}
+                boxes={this.state.boxesNine}
+                value={this.state.boards[8]}
+                updateSate={this.updateSate}
               />
             </div>
           </div>
@@ -135,13 +168,11 @@ class Board extends Component {
             </ul>
           </div>
 
-          {winner && (
-            <div className="board-footer">
-              <button className="btn" onClick={this.handleBoardRestart}>
-                Start new game
-              </button>
-            </div>
-          )}
+          <div className="board-footer">
+            <button className="btn" onClick={this.handleBoardRestart}>
+              Start new game
+            </button>
+          </div>
         </div>
       </div>
     );

@@ -27,6 +27,9 @@ class Scoreboard extends Component {
         <Link to="/board">
           <button className="btn">Start new game</button>
         </Link>
+        <Link to="/rules">
+          <button className="btn">View the rules</button>
+        </Link>
       </div>
     );
   }

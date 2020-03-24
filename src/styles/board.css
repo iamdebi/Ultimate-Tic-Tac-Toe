@@ -3,10 +3,6 @@
   flex-flow: row wrap;
 }
 
-.board {
-  width: 250px;
-}
-
 .board-row {
   display: flex;
   flex-flow: row wrap;
@@ -30,4 +26,14 @@
 
 .board-footer {
   width: 100%;
+}
+
+.inner-board {
+  border: solid 2px #4f4e4e;
+}
+
+.board-link {
+  text-decoration: none;
+  margin: 18px 18px 0 0;
+  color: #3498db;
 }
